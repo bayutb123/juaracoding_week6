@@ -41,15 +41,17 @@ public class Main {
                 System.out.println(String.join("", result));
                 result.remove(result.size() - 1);
                 result.remove(0);
+                if (result.size() == 1) {
+                    System.out.println(String.join("", result));
+                }
             } while (result.size() > 1);
         } else {
             System.out.println("Jumlah angka genap");
         }
-        System.out.println("\n");
+        System.out.println();
     }
 
     static void processTags(String tag1, String tag2) {
-        final int TAG2_START = 0;
         final int TAG2_LENGTH = 4;
         final int TRAILER_LENGTH = 18;
         final int MIN_TAG2_LENGTH = 94;
@@ -59,14 +61,10 @@ public class Main {
             return;
         }
 
-        String tag2Prefix = tag2.substring(TAG2_START, TAG2_LENGTH);
-        String[] tag2t = new String[5];
+        String tag2Prefix = tag2.substring(0, TAG2_LENGTH);
 
-        int offset = TAG2_LENGTH;
-        for (int i = 0; i < tag2t.length; i++) {
-            tag2t[i] = tag2.substring(offset, offset + TRAILER_LENGTH);
-            offset += TRAILER_LENGTH;
-        }
+        // Using split to separate tag2 into an array of substrings with length TRAILER_LENGTH
+        String[] tag2t = tag2.substring(TAG2_LENGTH).split("(?<=\\G.{" + TRAILER_LENGTH + "})");
 
         String result = tag2Prefix + String.join("", tag2t);
 
