@@ -64,14 +64,15 @@ public class Main {
             throw new IllegalArgumentException("Tag2 string should have a minimum length of 94 characters.");
         }
 
-        final int TAG2_START = 0;
-        final int TAG2T1_START = 4;
-        final int TAG2T2_START = 22;
-        final int TAG2T3_START = 40;
-        final int TAG2T4_START = 58;
-        final int TAG2T5_START = 76;
-        final int TAG2_LENGTH = 4;
-        final int TRAILER_LENGTH = 18;
+        final int
+                TAG2_START = 0,
+                TAG2_LENGTH = 4,
+                TAG2T1_START = TAG2_START + TAG2_LENGTH,
+                TAG2T2_START = TAG2T1_START + 18,
+                TAG2T3_START = TAG2T2_START + 18,
+                TAG2T4_START = TAG2T3_START + 18,
+                TAG2T5_START = TAG2T4_START + 18,
+                TRAILER_LENGTH = 18;
 
         String tag2Prefix = tag2.substring(TAG2_START, TAG2_LENGTH);
         String tag2t1 = tag2.substring(TAG2T1_START, TAG2T1_START + TRAILER_LENGTH);
